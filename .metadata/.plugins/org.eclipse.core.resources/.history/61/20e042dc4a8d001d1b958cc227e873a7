@@ -1,0 +1,35 @@
+package orientacaoaobjeto.aula01.atributosEmetodos;
+
+import java.time.LocalDate;
+
+public class Cachorro {
+
+	String nome;
+	String raca;
+	LocalDate dataNascimento;
+	double peso;
+	char porte;
+
+	@Override
+	public String toString() {
+		
+		String porteCachorro = "";
+		
+		switch(porte) {
+			case 'P':
+			case 'p': porteCachorro = "pequeno"; break;
+			
+			case 'M':
+			case 'm': porteCachorro = "médio"; break;
+			
+			case 'G':
+			case 'g': porteCachorro = "grande"; break;
+			
+			default: porteCachorro = "ALIEN";
+		}
+		
+		return "Cachorro nome: "+nome+" raca: "+raca+" data de nascimento: "+dataNascimento
+				+" peso: "+peso+" porte: "+porteCachorro;
+	}
+	
+}

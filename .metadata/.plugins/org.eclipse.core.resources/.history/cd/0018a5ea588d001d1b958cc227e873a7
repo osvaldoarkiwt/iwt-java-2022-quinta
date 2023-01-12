@@ -1,0 +1,10 @@
+package orientacaoaobjeto.aula01.atributosEmetodos.exercicios;
+
+public class Brasil {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

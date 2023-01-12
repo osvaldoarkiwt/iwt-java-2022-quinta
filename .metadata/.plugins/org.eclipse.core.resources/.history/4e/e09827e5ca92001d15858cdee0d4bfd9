@@ -1,0 +1,27 @@
+package orientacaoaobjeto.aula01.atributosEmetodos.exercicios.estudante;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Estudante {
+
+	String nome;
+	LocalDate dataDeNascimento;
+	Endereco endereco;
+	Contato contato;
+	List<Curso> cursos = new ArrayList<>();
+	
+	public String cursoString() {
+		String cursosString="";
+		
+		System.out.println(cursos.size());
+		
+		for(Curso curso : this.cursos) {
+			System.out.println(curso.nome);
+		}
+		
+		return cursosString;
+	}
+	
+}

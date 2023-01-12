@@ -1,0 +1,24 @@
+package orientacaoaobjeto.aula01.atributosEmetodos.exercicios.estudante;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class Estudante {
+
+	String nome;
+	LocalDate dataDeNascimento;
+	Endereco endereco;
+	Contato contato;
+	List<Curso> cursos;
+	
+	public String cursoString() {
+		String cursosString="";
+		
+		for(Curso curso : this.cursos) {
+			cursosString.concat(curso.nome+" "+"teste");
+		}
+		
+		return cursosString;
+	}
+	
+}

@@ -1,0 +1,18 @@
+package orientacaoaobjeto.aula01.atributosEmetodos;
+
+import java.time.LocalDate;
+
+public class Cachorro {
+
+	String nome;
+	String raca;
+	LocalDate dataNascimento;
+	double peso;
+	char porte;
+
+	@Override
+	public String toString() {
+		return "Cachorro";
+	}
+	
+}
