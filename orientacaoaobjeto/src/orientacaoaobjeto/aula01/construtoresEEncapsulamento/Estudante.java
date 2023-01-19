@@ -12,12 +12,21 @@ public class Estudante {
 	Contato contato;
 	List<Curso> cursos = new ArrayList<>();
 	
+	public Estudante(String nome, LocalDate dataDeNascimento, Endereco endereco, Contato contato, List<Curso> cursos) {
+		this.nome = nome;
+		this.dataDeNascimento = dataDeNascimento;
+		this.endereco = endereco;
+		this.contato = contato;
+		this.cursos = cursos;
+	}
+
 	public String cursoString() {
 		String cursosString="[ ";
 		
-		for(Curso curso : this.cursos) {
+		for(Curso curso : cursos) {
 			cursosString+=curso.nome+" "+curso.turno+" "+curso.cargaHoraria+" ";
 		}
+		
 		return cursosString+=" ]";
 	}
 	
