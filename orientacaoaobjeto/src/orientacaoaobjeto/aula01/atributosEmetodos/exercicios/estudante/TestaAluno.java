@@ -41,14 +41,14 @@ public class TestaAluno {
 		e01.estado = "Ceará";
 		e01.pais = "Brasil";
 		
-		Estudante est01 = new Estudante();
-		
+		Estudante est01 = new Estudante("Joacleiton",LocalDate.of(1999, Month.APRIL, 1),e01,cont01,Arrays.asList(c01,c02));
+		/*
 		est01.nome = "Joacleiton";
 		est01.dataDeNascimento = LocalDate.of(1999, Month.APRIL, 1);
 		est01.endereco = e01;
 		est01.contato = cont01;
 		est01.cursos =  Arrays.asList(c01,c02);
-		
+		*/
 		System.out.println(est01);
 	}
 
