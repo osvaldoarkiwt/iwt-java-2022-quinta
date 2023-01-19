@@ -26,20 +26,20 @@ public class TestaAluno {
 		c02.comeco = LocalDate.of(2022, Month.AUGUST, 22);
 		c02.fim = c01.comeco.plusMonths(c01.cargaHoraria /16);
 		
-		Contato cont01 = new Contato();
+		Contato cont01 = new Contato("(85) 99997-4646", "(85) 98887-1616", "joacleiton@email.com");
 		
-		cont01.telefone01 = "(85) 99997-4646";
+		/*cont01.telefone01 = "(85) 99997-4646";
 		cont01.telefone02 = "(85) 98887-1616";
-		cont01.email = "joacleiton@email.com";
+		cont01.email = "joacleiton@email.com";*/
 		
-		Endereco e01 = new Endereco();
+		Endereco e01 = new Endereco("Rua Carolino de Aquino nº122", "Fátima", "60050140", "Fortaleza", "Ceará", "Brasil");
 		
-		e01.logradouro = "Rua Carolino de Aquino nº122";
+		/*e01.logradouro = "Rua Carolino de Aquino nº122";
 		e01.bairro = "Fátima";
 		e01.cep = "60050140";
 		e01.municipio = "Fortaleza";
 		e01.estado = "Ceará";
-		e01.pais = "Brasil";
+		e01.pais = "Brasil";*/
 		
 		Estudante est01 = new Estudante("Joacleiton",LocalDate.of(1999, Month.APRIL, 1),e01,cont01,Arrays.asList(c01,c02));
 		/*

@@ -10,9 +10,19 @@ public class Curso {
 	int cargaHoraria;
 	LocalDate comeco;
 	LocalDate fim;
-	
-	
-	
+
+	public Curso(String nome, String turno, int cargaHoraria, LocalDate comeco, LocalDate fim) {
+		this.nome = nome;
+		this.turno = turno;
+		this.cargaHoraria = cargaHoraria;
+		this.comeco = comeco;
+		this.fim = fim;
+	}
+
+	public Curso(){
+
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cargaHoraria, comeco, fim, nome, turno);
