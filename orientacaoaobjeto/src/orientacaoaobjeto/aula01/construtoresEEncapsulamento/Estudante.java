@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Estudante {
 
-	String nome;
-	LocalDate dataDeNascimento;
-	Endereco endereco;
-	Contato contato;
-	List<Curso> cursos = new ArrayList<>();
+	private String nome;
+	private LocalDate dataDeNascimento;
+	private Endereco endereco;
+	private Contato contato;
+	private List<Curso> cursos = new ArrayList<>();
 	
 	public Estudante(String nome, LocalDate dataDeNascimento, Endereco endereco, Contato contato, List<Curso> cursos) {
 		this.nome = nome;
@@ -20,6 +20,46 @@ public class Estudante {
 		this.cursos = cursos;
 	}
 
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public LocalDate getDataDeNascimento() {
+		return this.dataDeNascimento;
+	}
+	
+	public void setDataDeNascimento(LocalDate dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
+	}
+	
+	public Endereco getEndereco() {
+		return this.endereco;
+	}
+	
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	public Contato getContato() {
+		return this.contato;
+	}
+	
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+	
+	public List<Curso> getCursos() {
+		return this.cursos;
+	}
+	
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+	
 	public String cursoString() {
 		String cursosString="[ ";
 		

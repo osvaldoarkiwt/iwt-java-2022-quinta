@@ -8,7 +8,7 @@ public class Contato {
 
     public Contato(String telefone01,
                    String telefone02,
-                   String email,) {
+                   String email) {
         this.telefone01 = telefone01;
         this.telefone02 = telefone02;
         this.email = email;

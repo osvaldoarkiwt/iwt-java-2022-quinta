@@ -24,6 +24,48 @@ public class Curso {
 		this.fim = this.comeco.plusMonths(this.cargaHoraria /16);
 	}
 
+	
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public int getCargaHoraria() {
+		return cargaHoraria;
+	}
+
+	public void setCargaHoraria(int cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
+	}
+
+	public LocalDate getComeco() {
+		return comeco;
+	}
+
+	public void setComeco(LocalDate comeco) {
+		this.comeco = comeco;
+	}
+
+	public LocalDate getFim() {
+		return fim;
+	}
+
+	public void setFim(LocalDate fim) {
+		this.fim = fim;
+	}
+
 	@Override
 	public String toString() {
 		return "Curso [nome=" + nome + ", turno=" + turno + ", cargaHoraria=" + cargaHoraria + ", comeco=" + comeco

@@ -48,9 +48,13 @@ public class TestaAluno {
 				new Endereco("Rua Carolino de Aquino nº122","Fátima","60050140","Fortaleza","Ceará","Brasil"),
 				new Contato("(85) 99997-4646","(85) 98887-1616","joacleiton@email.com"),
 				Arrays.asList(new Curso("Java","noite",120,LocalDate.of(2022, Month.DECEMBER, 01)),
-							  new Curso("Frontend","noite",80,LocalDate.of(2022, Month.AUGUST, 22))));
+							  new Curso("Frontend","noite",80,LocalDate.of(2022, Month.AUGUST, 22))));		
 		
-		System.out.println(est01);
+		System.out.println(est01.getNome());
+		System.out.println(est01.getDataDeNascimento());
+		System.out.println(est01.getEndereco());
+		System.out.println(est01.getContato());
+		
+		//System.out.println(est01);
 	}
-
 }
