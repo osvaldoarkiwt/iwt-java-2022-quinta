@@ -55,6 +55,10 @@ public class TestaAluno {
 		System.out.println(est01.getEndereco());
 		System.out.println(est01.getContato());
 		
+		est01.setNome("Marquinhos");
+		
+		System.out.println(est01.getNome());
+		
 		//System.out.println(est01);
 	}
 }
