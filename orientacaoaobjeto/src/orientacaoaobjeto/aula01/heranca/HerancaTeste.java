@@ -18,6 +18,8 @@ public class HerancaTeste {
 		
 		Aluno a1 = new Aluno("137","Ana",LocalDate.of(2002, Month.FEBRUARY, 10),"Bairro de Fátima","988774411","Java");
 		
+		Aluno a2 = new Aluno();
+		
 		System.out.println(a1.getIdade());
 		System.out.println(a1.toString());
 		
@@ -25,6 +27,8 @@ public class HerancaTeste {
 		
 		System.out.println(p1.getSalario());
 		System.out.println(p1);
+		
+		System.out.println(Aluno.getNumeroAlunos());
 		
 	}
 }
