@@ -43,7 +43,7 @@ public class Gato extends Animal {
 
 	@Override
 	public String toString() {
-		return "Gato [corDoPelo=" + corDoPelo + ", comidaFavorita=" + comidaFavorita + ", odeia=" + odeia
+		return "gato [corDoPelo=" + corDoPelo + ", comidaFavorita=" + comidaFavorita + ", odeia=" + odeia
 				+ ", getNome()=" + getNome() + ", getDataDeNascimento()=" + getDataDeNascimento() + ", getIdade()="
 				+ getIdade() + ", getRaca()=" + getRaca() + "]";
 	}
