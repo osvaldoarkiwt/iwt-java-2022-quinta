@@ -29,7 +29,7 @@ public class Estudante {
 		}
 		return cursosString+=" ]";
 	}
-	
+	@Override
 	public String toString() {
 		return "Estudante \n-nome: "+nome+"\n-data de aniversário: "+
 				dataDeNascimento+"\n"+
