@@ -5,7 +5,6 @@ public class Teste {
 	public static void main(String[] args) {
 		
 		Escala f = new Fahrenheit();
-		
 		Escala k = new Kelvin();
 		
 		System.out.println("fahrenheit: "+f.transformar(24));
