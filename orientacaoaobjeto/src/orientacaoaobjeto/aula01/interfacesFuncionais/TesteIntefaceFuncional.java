@@ -18,7 +18,7 @@ public class TesteIntefaceFuncional {
 	}
 
 	public static double executa(Operacao op,int x, int y) {
-		return op.calculo(x, y);
+		return (double)op.calculo(x, y);
 	}
 	
 }
