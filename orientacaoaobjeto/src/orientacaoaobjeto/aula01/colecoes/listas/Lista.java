@@ -31,6 +31,5 @@ public class Lista {
 		nomes.sort(new SuperComparator());
 		
 		for(Pessoa pessoa : nomes) System.out.println(pessoa.getNome()+" "+pessoa.getTipoSanguineo()+" "+pessoa.getIdade());
-		
 	}
 }
