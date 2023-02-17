@@ -12,11 +12,14 @@ public class Lista {
 		
 		List<Pessoa> nomes = new ArrayList<>(teste) {{
 			add(new Pessoa("Ana",22,'A'));
+			add(new Pessoa("Jorge",22,'A'));
 			add(new Pessoa("Elizabeth",18,'A'));
 			add(new Pessoa("Jorge",19,'B'));
 			add(new Pessoa("Maria",32,'B'));
 			add(new Pessoa("Lucas",25,'A'));
+			add(new Pessoa("Jorge",18,'A'));
 			add(new Pessoa("Julia",28,'B'));
+			add(new Pessoa("Maria",22,'B'));
 		}};
 		
 		nomes.add(new Pessoa("Marcos",41,'B'));
@@ -24,12 +27,10 @@ public class Lista {
 		//nomes.sort(null);
 		//nomes.sort(new NomeComparator());
 		//nomes.sort(new IdadeComparator());
-		nomes.sort(new TipoSanguineoComparator());
+		//nomes.sort(new TipoSanguineoComparator());
+		nomes.sort(new SuperComparator());
 		
-		Iterator it = nomes.iterator();
+		for(Pessoa pessoa : nomes) System.out.println(pessoa.getNome()+" "+pessoa.getTipoSanguineo()+" "+pessoa.getIdade());
 		
-		while(it.hasNext()) {
-			System.out.println(it.next());
-		}
 	}
 }
