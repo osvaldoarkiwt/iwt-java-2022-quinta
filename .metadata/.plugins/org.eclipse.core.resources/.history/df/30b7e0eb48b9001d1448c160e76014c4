@@ -1,0 +1,29 @@
+package orientacaoaobjeto.aula01.colecoes.listas.set;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class ImplementacaoSet {
+
+	public static void main(String[] args) {
+		
+		Set<Integer> numeros = new HashSet<>();
+		
+		numeros.add(10);
+		numeros.add(3);
+		numeros.add(20);
+		numeros.add(100);
+		numeros.add(1);
+		numeros.add(300);
+		numeros.add(7);
+		numeros.add(10);
+		numeros.add(7);
+		numeros.add(50);
+		numeros.add(1);
+		
+		numeros.forEach(System.out::println);
+		
+	}
+
+}
+
