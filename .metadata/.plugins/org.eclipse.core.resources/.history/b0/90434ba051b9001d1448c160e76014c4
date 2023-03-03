@@ -1,0 +1,25 @@
+package orientacaoaobjeto.aula01.colecoes.listas.set.exercicio;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class SalaDeAula {
+
+	public static void main(String[] args) {
+		
+		Set<Estudante> classe = new HashSet<>();
+		
+		classe.add(new Estudante(1L,"Helena",23,"Java"));
+		classe.add(new Estudante(2L,"José",28,"Java"));
+		classe.add(new Estudante(3L,"Paulo",23,"JavaScript"));
+		classe.add(new Estudante(4L,"Helena",19,"PHP"));
+		classe.add(new Estudante(5L,"Mauricio",54,"Python"));
+		classe.add(new Estudante(6L,"Mauricio",26,"Java"));
+		classe.add(new Estudante(7L,"Laura",41,"JavaScript"));
+		classe.add(new Estudante(8L,"Luana",26,"Java"));
+		
+;
+		
+		classe.forEach(System.out::println);
+	}
+}

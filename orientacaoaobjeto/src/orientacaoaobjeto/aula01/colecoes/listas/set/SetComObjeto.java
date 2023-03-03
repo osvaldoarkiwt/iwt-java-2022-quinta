@@ -14,8 +14,10 @@ public class SetComObjeto {
 		lista.add(new Pessoa("Maria",30));
 		lista.add(new Pessoa("Carlos",60));
 		lista.add(new Pessoa("Joao",41));
-
+		
 		lista.forEach(System.out::println);
+		
+		
 		
 	}
 }
