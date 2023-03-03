@@ -1,0 +1,22 @@
+package orientacaoaobjeto.aula01.colecoes.listas.map;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+public class ImplementacaoMap {
+
+	public static void main(String[] args) {
+		
+		Map<String, Double> produtos = new HashMap<>();
+		
+		produtos.put("mamão", 3.80);
+		produtos.put("maçã", 9.00);
+		produtos.put("abacate",7.2);
+		produtos.put("melancia",1.5);
+		
+		for(Entry<String, Double> entrada : produtos.entrySet()) {
+			System.out.println(entrada.getKey()+" "+entrada.getValue());
+		}
+	}
+}
