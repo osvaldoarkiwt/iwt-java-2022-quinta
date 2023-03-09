@@ -4,5 +4,10 @@
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.Month"/>
+    <fullyQualifiedTypeName name="orientacaoaobjeto.aula01.colecoes.listas.Pessoa"/>
+    <fullyQualifiedTypeName name="orientacaoaobjeto.aula01.colecoes.listas.set.Pessoa"/>
+    <fullyQualifiedTypeName name="orientacaoaobjeto.aula01.colecoes.listas.set.exercicio.ComparatorNomeIdade"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
 </qualifiedTypeNameHistroy>
