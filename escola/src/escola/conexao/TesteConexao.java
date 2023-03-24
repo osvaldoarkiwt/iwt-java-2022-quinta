@@ -1,36 +1,32 @@
 package escola.conexao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
+
+import escola.dao.AlunoDao;
+import escola.model.Aluno;
 
 public class TesteConexao {
 
 	public static void main(String[] args) {
+	
+		Aluno aluno = new Aluno();
 		
-		Connection con =  ConnectionFactory.getConnection();
-			
-		try {
-			
-			String sql = "insert into aluno(nome,idade,curso) values(?,?,?)";
-			
-			PreparedStatement stmt = con.prepareStatement(sql);
+		aluno.setNome("Luíza");
+		aluno.setDataDeNascimento(LocalDate.of(2002, 10, 3));
+		aluno.setEndereco("aldeota");
 		
-			stmt.setString(1, "Jonathan");
-			stmt.setInt(2, 23);
-			stmt.setString(3, "Java");
-			
-			stmt.execute();
-			
-			stmt.close();
-			
-			System.out.println("inserção realizada com sucesso!" );
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-
+		AlunoDao dao = new AlunoDao();
+		
+		//dao.matricularAluno(aluno);
+		
+		//dao.editarAluno(2L, aluno);
+		
+		//Aluno alunoResposta = dao.retornaAlunoPorId(1L);
+		
+		//System.out.println(alunoResposta);
+		
+		dao.deletarAluno(1L);
+		
 	}
-
 }

@@ -1,0 +1,47 @@
+create table pessoa(id serial primary key, nome varchar(100), idade int, email varchar(50));
+
+insert into pessoa(nome,idade,email) values('claudio',25,'claudio@email');
+
+insert into pessoa values(5,'julia',30,'julia@email');
+
+insert into pessoa(nome,idade,email) values('ana',19,'ana@email'),
+						 ('roberta',30,'roberta@email'),
+						 ('lucas',23,'lucas@email');
+						 
+update pessoa set nome = 'pedro lucas' where id = 4;	
+
+select * from pessoa;
+
+select nome,email from pessoa where idade=30;
+
+select nome,email from pessoa where idade=30 and nome = 'julia';
+
+select nome,email from pessoa where nome like '%l%';
+
+delete from pessoa where id in (1,2,3);
+
+-- logradouro, numero, bairro,complemento
+create table endereco(id serial primary key, logradouro varchar(100),numero varchar(100),bairro varchar(100),complemento varchar(100)); 
+
+--adicionando endereço a pessoa
+alter table pessoa add column endereco_id bigint; 
+
+--adicionando a chave estrangeira
+alter table pessoa add constraint fk_endereco_id foreign key(endereco_id) references endereco(id);
+
+--adicionando um endereco
+insert into endereco (logradouro,numero,complemento,bairro) 
+				values('bezerra de menezes','1033','altos','são gerardo');
+
+update pessoa set endereco_id = 1 where id = 4;
+
+select * from pessoa p inner join endereco e on p.endereco_id = e.id ;
+
+select p.nome ,
+       p.idade,
+       p.email,
+       e.logradouro,
+       e.numero,
+       e.complemento 
+       from pessoa p 
+	   inner join endereco e on p.endereco_id = e.id ;
