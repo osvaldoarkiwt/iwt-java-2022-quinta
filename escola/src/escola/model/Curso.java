@@ -1,6 +1,5 @@
 package escola.model;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Curso {
@@ -8,10 +7,6 @@ public class Curso {
 	private Long id;
 	
 	private String nome;
-	
-	private Professor professor;
-	
-	private List<Aluno> alunos;
 	
 	public Curso() {}
 
@@ -31,25 +26,9 @@ public class Curso {
 		this.nome = nome;
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(alunos, id, nome, professor);
+		return Objects.hash(id, nome);
 	}
 
 	@Override
@@ -61,12 +40,11 @@ public class Curso {
 		if (getClass() != obj.getClass())
 			return false;
 		Curso other = (Curso) obj;
-		return Objects.equals(alunos, other.alunos) && Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(professor, other.professor);
+		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
 
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", professor=" + professor + ", alunos=" + alunos + "]";
+		return "Curso [id=" + id + ", nome=" + nome + "]";
 	}
 }

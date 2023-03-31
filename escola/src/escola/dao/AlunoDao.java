@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 import escola.conexao.ConnectionFactory;
 import escola.model.Aluno;
@@ -102,9 +105,50 @@ public class AlunoDao {
 		}
 	}
 	
+	public List<Aluno> retornarAlunos(){
+		
+		List<Aluno> alunos = new ArrayList<>();
+		
+		String sql = "select * from aluno";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				Aluno aluno = new Aluno();
+				
+				aluno.setId(rs.getLong("id"));
+				
+				aluno.setNome(rs.getString("nome"));
+				
+				Date date = rs.getDate("data_de_nascimento");
+		
+				Instant instant = Instant.ofEpochMilli(date.getTime());
+				
+				LocalDate dataDeNascimento = instant.atZone(ZoneId.systemDefault()).toLocalDate();	
+				
+				aluno.setDataDeNascimento(dataDeNascimento);
+				
+				aluno.setEndereco(rs.getString("endereco"));
+
+				alunos.add(aluno);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return alunos;
+	}
+	
 	public void deletarAluno(Long id) {
 		
 		String sql = "delete from aluno where id = ?";
+
+		LocalDateTime deletado = LocalDateTime.now();
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
