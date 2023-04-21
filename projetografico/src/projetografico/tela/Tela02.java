@@ -1,26 +1,31 @@
 package projetografico.tela;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.EventQueue;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import projetografico.modelo.Aluno;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class Tela extends JFrame {
+import projetografico.dao.AlunoDao;
+import projetografico.modelo.Aluno;
+
+public class Tela02 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField campoId;
@@ -28,6 +33,8 @@ public class Tela extends JFrame {
 	private JTextField campoEndereco;
 	private JTable table;
 
+	AlunoDao dao = new AlunoDao();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +54,7 @@ public class Tela extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Tela() {
+	public Tela02() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 670, 434);
 		contentPane = new JPanel();
@@ -89,34 +96,44 @@ public class Tela extends JFrame {
 		contentPane.add(campoEndereco);
 		campoEndereco.setColumns(10);
 		
-		JButton botao01 = new JButton("mostrar dados");
-		botao01.addActionListener(new ActionListener() {
+		JButton insere = new JButton("inserir");
+		insere.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
+				
+			}
+		});
+		insere.setBounds(16, 294, 153, 23);
+		contentPane.add(insere);
+		
+		JButton mostra = new JButton("mostrar dados");
+		mostra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Aluno a01 = new Aluno();
 				
-				String id = campoId.getText();
-				String nome = campoNome.getText();
-				LocalDate dataDeNascimento = LocalDate.now();
-				String endereco = campoEndereco.getText();
+				a01.setNome(Optional.of(campoNome.getText()).orElse("vazio"));
+				a01.setEndereco(Optional.of(campoEndereco.getText()).orElse("vazio02"));
 				
-				a01.setId(Long.parseLong(id));
-				a01.setNome(nome);
-				a01.setDataDeNascimento(dataDeNascimento);
-				a01.setEndereco(endereco);
-				
-				JOptionPane.showMessageDialog(rootPane,a01);
-				
-				Object[] linha = new Object[]{id,nome,endereco};
-				
-				((DefaultTableModel) table.getModel()).addRow(linha);
+				dao.matricularAluno(a01);
 				
 				limparFormulario(campoNome, campoId, campoEndereco);
-				
+
+				JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
 			}
 		});
-		botao01.setBounds(10, 192, 153, 23);
-		contentPane.add(botao01);
+		mostra.setBounds(10, 192, 153, 23);
+		contentPane.add(mostra);
+		
+		JButton limpa = new JButton("limpar tabela");
+		limpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpaTela(table);
+			}
+		});
+		limpa.setBounds(10, 236, 153, 23);
+		contentPane.add(limpa);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(255, 51, 389, 266);
@@ -139,14 +156,8 @@ public class Tela extends JFrame {
 		});
 		scrollPane.setViewportView(table);
 		
-		JButton limpa = new JButton("limpar tabela");
-		limpa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpaTela(table);
-			}
-		});
-		limpa.setBounds(10, 236, 153, 23);
-		contentPane.add(limpa);
+		setFocusTraversalPolicy(new MyFocusTraversalPolicy(campoId,campoNome,campoEndereco,mostra,limpa));
+		
 	}
 	
 	public static void limpaTela(JTable table) {
@@ -157,5 +168,45 @@ public class Tela extends JFrame {
 		j1.setText("");
 		j2.setText("");
 		j3.setText("");
+	}
+	
+	private class MyFocusTraversalPolicy extends FocusTraversalPolicy{
+
+		private ArrayList<Component> order;
+		
+		private MyFocusTraversalPolicy(JTextField j1,JTextField j2,JTextField j3,JButton b1, JButton b2) {
+			order = new ArrayList<Component>();
+			
+			order.add(j1);
+			order.add(j2);
+			order.add(j3);
+			order.add(b1);
+			order.add(b2);
+		}
+		
+		 public Component getComponentAfter(Container focusCycleRoot, Component aComponent) {
+		        int idx = (order.indexOf(aComponent) + 1) % order.size();
+		        return order.get(idx);
+		    }
+
+		    public Component getComponentBefore(Container focusCycleRoot, Component aComponent) {
+		        int idx = order.indexOf(aComponent) - 1;
+		        if (idx < 0) {
+		            idx = order.size() - 1;
+		        }
+		        return order.get(idx);
+		    }
+
+		    public Component getDefaultComponent(Container focusCycleRoot) {
+		        return order.get(0);
+		    }
+
+		    public Component getLastComponent(Container focusCycleRoot) {
+		        return order.get(order.size() - 1);
+		    }
+
+		    public Component getFirstComponent(Container focusCycleRoot) {
+		        return order.get(0);
+		    }
 	}
 }
