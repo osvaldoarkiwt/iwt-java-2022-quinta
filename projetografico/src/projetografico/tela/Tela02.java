@@ -5,8 +5,11 @@ import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -42,7 +45,7 @@ public class Tela02 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Tela frame = new Tela();
+					Tela02 frame = new Tela02();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -97,6 +100,22 @@ public class Tela02 extends JFrame {
 		campoEndereco.setColumns(10);
 		
 		JButton insere = new JButton("inserir");
+		insere.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyPressed(KeyEvent e) {
+		        
+		    	JButton focusedButton = (JButton) KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+		    	
+		    	if (e.getKeyCode() == KeyEvent.VK_ENTER && focusedButton == insere) {
+		        	
+		        	
+		            
+		        	JOptionPane.showMessageDialog(null, "Button Enviar clicked!");
+		        	
+		            insere.doClick();
+		        }
+		    }
+		});
 		insere.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

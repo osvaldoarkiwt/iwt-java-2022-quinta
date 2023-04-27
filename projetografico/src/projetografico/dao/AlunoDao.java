@@ -30,9 +30,6 @@ public class AlunoDao {
 			stmt.setString(2, aluno.getEndereco());
 			
 			stmt.execute();
-			
-			System.out.println("registro salvo com sucesso");
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,8 +47,6 @@ public class AlunoDao {
 			stmt.setLong(3, id);
 			
 			stmt.execute();
-			
-			System.out.println("aluno editado com sucesso.");
 			
 		} catch (SQLException e) {
 			

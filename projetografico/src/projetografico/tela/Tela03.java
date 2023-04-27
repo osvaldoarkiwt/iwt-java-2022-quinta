@@ -129,6 +129,28 @@ public class Tela03 extends JFrame {
 		
 		popularTabela(dao, table);
 		
+		JButton btnEditar = new JButton("editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Long id = Long.parseLong(textField.getText());
+				
+				Aluno a01 = new Aluno();
+				a01.setNome(Optional.of(textField_1.getText()).orElse("vazio"));
+				a01.setEndereco(Optional.of(textField_2.getText()).orElse("vazio02"));
+				
+				dao.editarAluno(id, a01);
+				
+				limparFormulario(textField, textField_1, textField_2);
+	
+				popularTabela(dao, table);	
+				
+				JOptionPane.showMessageDialog(getParent(), "Aluno editado com sucesso");
+			}
+		});
+		btnEditar.setBounds(10, 256, 89, 23);
+		contentPane.add(btnEditar);
+		
 	}
 	
 	public static void limparFormulario(JTextField j1,JTextField j2,JTextField j3) {
