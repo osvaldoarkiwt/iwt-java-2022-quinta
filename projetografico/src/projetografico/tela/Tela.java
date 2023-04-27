@@ -106,23 +106,45 @@ public class Tela extends JFrame {
 		btnEnviar.setBounds(28, 202, 117, 25);
 		contentPane.add(btnEnviar);
 		
-		JButton btnListar = new JButton("listar");
-		btnListar.addKeyListener(new KeyAdapter() {
+		JButton btnEditar = new JButton("editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				editar(dao, textField, textField_1, textField_2, table);
+				
+				JOptionPane.showMessageDialog(getParent(), "Aluno editado com sucesso!");
+			}
+		});
+		btnEditar.addKeyListener(new KeyAdapter() {
 		    @Override
 		    public void keyPressed(KeyEvent e) {
 		        
 		    	JButton focusedButton = (JButton) KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
 		    	
-		    	if (e.getKeyCode() == KeyEvent.VK_ENTER && focusedButton == btnListar) {
+		    	if (e.getKeyCode() == KeyEvent.VK_ENTER && focusedButton == btnEditar) {
 		            
-		        	JOptionPane.showMessageDialog(null, "Button Listar clicked!");
+
+					editar(dao, textField, textField_1, textField_2, table);
+					
+					JOptionPane.showMessageDialog(getParent(), "Aluno editado com sucesso!");
 		        }
 		    }
 		});
-		btnListar.setBounds(28, 239, 117, 25);
-		contentPane.add(btnListar);
+		btnEditar.setBounds(28, 239, 117, 25);
+		contentPane.add(btnEditar);
 		
 		JButton btnCarregar = new JButton("carregar");
+		btnCarregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int indice = table.getSelectedRow();
+				
+				textField.setText(table.getValueAt(indice, 0).toString());
+				textField_1.setText((String)table.getValueAt(indice, 1).toString());
+				textField_2.setText((String)table.getValueAt(indice, 2).toString());
+				
+			}
+		});
 		btnCarregar.addKeyListener(new KeyAdapter() {
 		    @Override
 		    public void keyPressed(KeyEvent e) {
@@ -131,7 +153,11 @@ public class Tela extends JFrame {
 		    	
 		    	if (e.getKeyCode() == KeyEvent.VK_ENTER && focusedButton == btnCarregar) {
 		        	         
-		        	JOptionPane.showMessageDialog(null, "Button Carregar clicked!");
+		    		int indice = table.getSelectedRow();
+					
+					textField.setText(table.getValueAt(indice, 0).toString());
+					textField_1.setText(table.getValueAt(indice, 1).toString());
+					textField_2.setText(table.getValueAt(indice, 2).toString());
 		        	
 		        }
 		    }
@@ -140,6 +166,12 @@ public class Tela extends JFrame {
 		contentPane.add(btnCarregar);
 		
 		JButton btnApagar = new JButton("apagar");
+		btnApagar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				deletar(dao, table);
+			}
+		});
 		btnApagar.addKeyListener(new KeyAdapter() {
 		    @Override
 		    public void keyPressed(KeyEvent e) {
@@ -148,7 +180,7 @@ public class Tela extends JFrame {
 		    	
 		    	if(e.getKeyCode() == KeyEvent.VK_ENTER && focusedButton == btnApagar) {
 		              
-		        	JOptionPane.showMessageDialog(null, "Button Apagar clicked!");
+		        	deletar(dao, table);
 		        }
 		    }
 		});
@@ -215,20 +247,20 @@ public class Tela extends JFrame {
 		
 		popularTabela(dao, table);
 		
-		setFocusTraversalPolicy(new MyFocusTraversalPolicy(textField,textField_1,textField_2,btnEnviar,btnListar,btnCarregar,btnApagar));
+		setFocusTraversalPolicy(new MyFocusTraversalPolicy(textField,textField_1,textField_2,btnEnviar,btnEditar,btnCarregar,btnApagar));
 	}
 	
 	private class MyFocusTraversalPolicy extends FocusTraversalPolicy {
 		
 		private ArrayList<Component> order;
 
-	    public MyFocusTraversalPolicy(JTextField tf1, JTextField tf2, JTextField tf3, JButton btnEnviar, JButton btnListar, JButton btnCarregar, JButton btnApagar) {
+	    public MyFocusTraversalPolicy(JTextField tf1, JTextField tf2, JTextField tf3, JButton btnEnviar, JButton btnEditar, JButton btnCarregar, JButton btnApagar) {
 	        order = new ArrayList<Component>();
 	        order.add(tf1);
 	        order.add(tf2);
 	        order.add(tf3);
 	        order.add(btnEnviar);
-	        order.add(btnListar);
+	        order.add(btnEditar);
 	        order.add(btnCarregar);
 	        order.add(btnApagar);
 	    }
@@ -274,9 +306,7 @@ public class Tela extends JFrame {
 		});
 	}
 	
-	public static void inserir(AlunoDao dao,JTextField jt1,JTextField jt2,JTextField jt3,JTable table) {
-		
-		//Long id = Long.parseLong(jt1.getText());
+	public static void inserir(AlunoDao dao,JTextField jt1,JTextField jt2,JTextField jt3,JTable table) {		
 		
 		Aluno a01 = new Aluno();
 		a01.setNome(Optional.of(jt2.getText()).orElse("vazio"));
@@ -290,6 +320,37 @@ public class Tela extends JFrame {
 		
 		popularTabela(dao, table);	
 		
+	}
+	
+	public static void editar(AlunoDao dao,JTextField jt1,JTextField jt2,JTextField jt3,JTable table) {
+		
+		Long id = Long.parseLong(jt1.getText());
+		
+		Aluno a01 = new Aluno();
+		a01.setNome(Optional.of(jt2.getText()).orElse("vazio"));
+		a01.setEndereco(Optional.of(jt3.getText()).orElse("vazio02"));
+		
+		dao.editarAluno(id, a01);
+		
+		limparFormulario(jt1,jt2,jt3);
+
+		limpaTabela(table);
+		
+		popularTabela(dao, table);	
+		
+	}
+	
+	public static void deletar(AlunoDao dao, JTable table) {
+		
+		int indice = table.getSelectedRow();
+		
+		Long id = (Long) table.getValueAt(indice, 0);
+		
+		dao.deletarAluno(id);
+		
+		limpaTabela(table);
+		
+		popularTabela(dao, table);
 	}
 	
 	public static void limparFormulario(JTextField j1,JTextField j2,JTextField j3) {
