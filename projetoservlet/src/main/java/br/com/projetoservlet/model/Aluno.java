@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Aluno {
 
+	private Long id;
 	private String nome;
 	private Integer idade;
 	private String endereco;
@@ -19,6 +20,14 @@ public class Aluno {
 		this.endereco = endereco;
 		this.curso = curso;
 		this.turno = turno;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
