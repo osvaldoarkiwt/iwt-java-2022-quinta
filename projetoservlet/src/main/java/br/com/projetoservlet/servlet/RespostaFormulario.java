@@ -1,6 +1,8 @@
 package br.com.projetoservlet.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Optional;
 
 import br.com.projetoservlet.alunodao.AlunoDao;
 import br.com.projetoservlet.model.Aluno;
@@ -16,7 +18,10 @@ public class RespostaFormulario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		/*
+	
+		
+		AlunoDao dao = new AlunoDao();
+		
 		String nome = Optional.ofNullable(request.getParameter("nome"))
 				.orElse("informe a banda na url");
 		
@@ -31,18 +36,17 @@ public class RespostaFormulario extends HttpServlet {
 		
 		String turno = Optional.ofNullable(request.getParameter("turno"))
 				.orElse("informe a banda na url");
-		*/
 		
-		AlunoDao dao = new AlunoDao();
 		
-		Aluno aluno = dao.retornaAlunoPorId(1L);
+		
+		Aluno aluno = new Aluno(nome,idade,endereco,curso,turno);
 	
+		dao.matricularAluno(aluno);
+		
 		request.setAttribute("aluno", aluno);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("aluno.jsp");
 		
 		rd.forward(request, response);
 	}
-	
-
 }
