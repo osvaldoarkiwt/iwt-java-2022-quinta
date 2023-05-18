@@ -127,7 +127,6 @@ private Connection con;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return alunos;
 	}
 	

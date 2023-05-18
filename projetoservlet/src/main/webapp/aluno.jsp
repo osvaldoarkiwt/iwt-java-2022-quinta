@@ -6,18 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 	<% Aluno aluno = (Aluno) request.getAttribute("aluno"); %>
+	<div style="margin:50px;">	
+		<p><%= aluno.getNome() %></p>
+		<p><%= aluno.getIdade() %></p>
+		<p><%= aluno.getEndereco() %></p>
+		<p><%= aluno.getCurso() %></p>
+		<p><%= aluno.getTurno() %></p>
+	</div>
 
-	<p><%= aluno.getNome() %></p>
-	<p><%= aluno.getIdade() %></p>
-	<p><%= aluno.getEndereco() %></p>
-	<p><%= aluno.getCurso() %></p>
-	<p><%= aluno.getTurno() %></p>
-
-</body>
+</body> 
 </html>
