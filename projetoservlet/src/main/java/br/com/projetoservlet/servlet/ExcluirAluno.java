@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/deletar")
+@WebServlet("/excluir")
 public class ExcluirAluno extends HttpServlet{
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,13 +21,9 @@ public class ExcluirAluno extends HttpServlet{
 		
 		Long id = Long.parseLong(request.getParameter("id"));
 		
-		//dao.retornarAlunos();
+		dao.deletarAluno(id);
 		
-		//request.setAttribute("alunos", alunos);
-		
-		//RequestDispatcher rd = request.getRequestDispatcher("alunos.jsp");
-		
-		//rd.forward(request, response);
+		response.sendRedirect("alunos");
 		
 	}
 }

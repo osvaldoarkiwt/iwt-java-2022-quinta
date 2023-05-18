@@ -36,7 +36,9 @@
 					<td><%= aluno.getEndereco() %></td>
 					<td><%= aluno.getCurso() %></td>
 					<td><%= aluno.getTurno() %></td>
-					<td></td>
+					<td>
+						<a href="excluir?id=<%=aluno.getId() %>">excluir</a>
+					</td>
 				</tr>
 				
 			<%} %>
