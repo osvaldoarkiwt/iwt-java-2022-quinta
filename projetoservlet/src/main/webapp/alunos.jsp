@@ -22,7 +22,7 @@
 				<th>endereço</th>
 				<th>curso</th>
 				<th>turno</th>
-				<th>ações</th>				
+				<th colspan="2">ações</th>				
 			</tr>
 		</thead>
 		<tbody>
@@ -37,6 +37,9 @@
 					<td><%= aluno.getCurso() %></td>
 					<td><%= aluno.getTurno() %></td>
 					<td>
+						<a href="buscar?id=<%= aluno.getId() %>">editar</a>
+					</td>
+					<td>
 						<a href="excluir?id=<%=aluno.getId() %>">excluir</a>
 					</td>
 				</tr>
@@ -45,7 +48,7 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="7">rodapé</td>
+				<td colspan="8">rodapé</td>
 			</tr>
 		</tfoot>
 	</table>

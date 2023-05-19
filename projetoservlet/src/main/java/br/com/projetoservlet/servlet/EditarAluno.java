@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/buscar")
-public class BuscaAluno extends HttpServlet{
+@WebServlet("/editar")
+public class EditarAluno extends HttpServlet{
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -20,12 +20,20 @@ public class BuscaAluno extends HttpServlet{
 		
 		Long id = Long.parseLong(request.getParameter("id"));
 		
-		Aluno aluno = dao.retornaAlunoPorId(id);
+		String nome = request.getParameter("nome");
 		
-		request.setAttribute("aluno", aluno);
+		Integer idade = Integer.parseInt(request.getParameter("idade"));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("editaraluno.jsp");
+		String endereco = request.getParameter("endereco");
 		
-		rd.forward(request, response);
+		String curso = request.getParameter("curso");
+		
+		String turno = request.getParameter("turno");
+		
+		Aluno aluno = new Aluno(nome,idade,endereco,curso,turno);
+		
+		dao.editarAluno(id, aluno);
+	
+		response.sendRedirect("alunos");
 	}
 }
