@@ -1,10 +1,13 @@
 package br.com.projeto.app.model;
 
+import java.util.List;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.projeto.app.model.embedded.Endereco;
@@ -25,4 +28,7 @@ public class Cliente {
 	private String nome;
 	@Embedded
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy = "cliente")
+	List<Pedido> pedidos;
 }
